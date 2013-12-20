@@ -73,17 +73,17 @@ namespace tree
 
   void Tree::Node::addChild(Node const& n, int pos)
   {
-    _children[pos] = &n;
+    _children[pos] = &const_cast<Node&>(n);
   }
 
   void Tree::Node::addLeftChild(Node const& n)
   {
-    _children[0] = &n;
+    _children[0] = &const_cast<Node&>(n);
   }
 
   void Tree::Node::addRightChild(Node const& n)
   {
-    _children[1] = &n;
+    _children[1] = &const_cast<Node&>(n);
   }
 
   Tree::Node *Tree::Node::operator[](int index)

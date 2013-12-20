@@ -71,19 +71,19 @@ namespace tree
     return operator[](2);
   }
 
-  void Tree::Node::addChild(Node const& n, int pos)
+  void Tree::Node::addChild(Node const* n, int pos)
   {
-    _children[pos] = &const_cast<Node&>(n);
+    _children[pos] = const_cast<Node*>(n);
   }
 
-  void Tree::Node::addLeftChild(Node const& n)
+  void Tree::Node::addLeftChild(Node const* n)
   {
-    _children[0] = &const_cast<Node&>(n);
+    _children[0] = const_cast<Node*>(n);
   }
 
-  void Tree::Node::addRightChild(Node const& n)
+  void Tree::Node::addRightChild(Node const* n)
   {
-    _children[1] = &const_cast<Node&>(n);
+    _children[1] = const_cast<Node*>(n);
   }
 
   Tree::Node *Tree::Node::operator[](int index)

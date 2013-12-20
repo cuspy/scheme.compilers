@@ -59,13 +59,13 @@ public:
     Node();
     virtual ~Node();
 
-    static Node *first();
-    static Node *second();
-    static Node *third();
+    Node *first();
+    Node *second();
+    Node *third();
 
-    static void addChild(Node const& n, int pos);
-    static void addLeftChild(Node const& n);
-    static void addRightChild(Node const& n);
+    void addChild(Node const& n, int pos);
+    void addLeftChild(Node const& n);
+    void addRightChild(Node const& n);
  
   private:
     vector<Tree::Node*> _children;

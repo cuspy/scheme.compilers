@@ -63,9 +63,9 @@ public:
     Node *second();
     Node *third();
 
-    void addChild(Node const& n, int pos);
-    void addLeftChild(Node const& n);
-    void addRightChild(Node const& n);
+    void addChild(Node const* n, int pos);
+    void addLeftChild(Node const* n);
+    void addRightChild(Node const* n);
  
   private:
     vector<Tree::Node*> _children;
