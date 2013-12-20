@@ -56,7 +56,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_schemeart_OBJECTS = src/main.$(OBJEXT)
+am_schemeart_OBJECTS = src/main.$(OBJEXT) src/tree.$(OBJEXT)
 schemeart_OBJECTS = $(am_schemeart_OBJECTS)
 schemeart_LDADD = $(LDADD)
 SCRIPTS = $(dist_noinst_SCRIPTS)
@@ -161,7 +161,9 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
-schemeart_SOURCES = src/main.cc
+schemeart_SOURCES = src/main.cc \
+			src/tree.cc
+
 dist_noinst_SCRIPTS = autogen.sh
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -248,6 +250,7 @@ src/$(DEPDIR)/$(am__dirstamp):
 	@$(mkdir_p) src/$(DEPDIR)
 	@: > src/$(DEPDIR)/$(am__dirstamp)
 src/main.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/tree.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 schemeart$(EXEEXT): $(schemeart_OBJECTS) $(schemeart_DEPENDENCIES) 
 	@rm -f schemeart$(EXEEXT)
 	$(CXXLINK) $(schemeart_LDFLAGS) $(schemeart_OBJECTS) $(schemeart_LDADD) $(LIBS)
@@ -255,11 +258,13 @@ schemeart$(EXEEXT): $(schemeart_OBJECTS) $(schemeart_DEPENDENCIES)
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/main.$(OBJEXT)
+	-rm -f src/tree.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/tree.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`; \
