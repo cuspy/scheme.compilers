@@ -59,10 +59,21 @@ public:
     Node();
     virtual ~Node();
 
-  Node *operator[](int index);
+    Node *first();
+    Node *second();
+    Node *third();
 
+    void addChild(Node const& n, int pos);
+    void addLeftChild(Node const& n);
+    void addRightChild(Node const& n);
+ 
   private:
     vector<Tree::Node*> _children;
+
+  public:
+
+    Node *operator[](int index);
+
   };
 
 public:

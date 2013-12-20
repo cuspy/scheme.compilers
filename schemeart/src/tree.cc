@@ -49,11 +49,41 @@ namespace tree
 {
   Tree::Node::Node()
   {
-    _children.reserve(2);
+    _children.reserve(3);
   }
   
   Tree::Node::~Node()
   {
+  }
+
+  Tree::Node *Tree::Node::first()
+  {
+    return operator[](0);
+  }
+
+  Tree::Node *Tree::Node::second()
+  {
+    return operator[](1);
+  }
+  
+  Tree::Node *Tree::Node::third()
+  {
+    return operator[](2);
+  }
+
+  void Tree::Node::addChild(Node const& n, int pos)
+  {
+    _children[pos] = &const_cast<Node&>(n);
+  }
+
+  void Tree::Node::addLeftChild(Node const& n)
+  {
+    _children[0] = &const_cast<Node&>(n);
+  }
+
+  void Tree::Node::addRightChild(Node const& n)
+  {
+    _children[1] = &const_cast<Node&>(n);
   }
 
   Tree::Node *Tree::Node::operator[](int index)

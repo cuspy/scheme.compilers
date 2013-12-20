@@ -40,26 +40,45 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
+#include<vector>
+
 
 namespace schemeart
 {
 namespace tree
 {
+using namespace std;
+
 class Tree
 {
 public:
-  class Tree::Node
+  class Node
   {
+
   public:
     Node();
     virtual ~Node();
+
+    static Node *first();
+    static Node *second();
+    static Node *third();
+
+    static void addChild(Node const& n, int pos);
+    static void addLeftChild(Node const& n);
+    static void addRightChild(Node const& n);
+ 
+  private:
+    vector<Tree::Node*> _children;
+
+  public:
+
+    Node *operator[](int index);
+
   };
 
 public:
   Tree();
   virtual ~Tree();
-
-  Node *operator[](int index);
 
 private:
   Tree::Node *_root;

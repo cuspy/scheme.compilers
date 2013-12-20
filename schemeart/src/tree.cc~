@@ -40,31 +40,69 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
+#include "tree.h"
+#include "main.h"
 
 namespace schemeart
 {
 namespace tree
 {
-class Tree
-{
-public:
-  class Tree::Node
+  Tree::Node::Node()
   {
-  public:
-    Node();
-    virtual ~Node();
-  };
+    _children.reserve(3);
+  }
+  
+  Tree::Node::~Node()
+  {
+  }
 
-public:
-  Tree();
-  virtual ~Tree();
+  Tree::Node *Tree::Node::first()
+  {
+    return operator[](0);
+  }
 
-  Node *operator[](int index);
+  Tree::Node *Tree::Node::second()
+  {
+    return operator[](1);
+  }
+  
+  Tree::Node *Tree::Node::third()
+  {
+    return operator[](2);
+  }
 
-private:
-  Tree::Node *_root;
+  void Tree::Node::addChild(Node const& n, int pos)
+  {
+    _children[pos] = &n;
+  }
 
-};
+  void Tree::Node::addLeftChild(Node const& n)
+  {
+    _children[0] = &n;
+  }
+
+  void Tree::Node::addRightChild(Node const& n)
+  {
+    _children[1] = &n;
+  }
+
+  Tree::Node *Tree::Node::operator[](int index)
+  {
+    if (index >= _children.size())
+      return NIL;
+    else 
+      return _children[index];
+  }
+
+  Tree::Tree()
+  {
+    _root = new Tree::Node();
+  }
+  
+  Tree::~Tree()
+  {
+	//delete _root;
+  }
 
 }//namespace tree
 }//namespace schemeart
