@@ -40,70 +40,41 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
-#include "tree.h"
-#include "main.h"
+#include<vector>
+#include"tree.h"
+#include<my_string.h>
 
 namespace schemeart
 {
 namespace tree
 {
-  Tree::Node::Node()
-  {
-    _children.reserve(3);
-  }
-  
-  Tree::Node::~Node()
-  {
-  }
+using namespace std;
 
-  Tree::Node *Tree::Node::first()
+class ParseTree : public Tree
+{
+public:
+  class ParseNode : public Tree::Node
   {
-    return operator[](0);
-  }
 
-  Tree::Node *Tree::Node::second()
-  {
-    return operator[](1);
-  }
-  
-  Tree::Node *Tree::Node::third()
-  {
-    return operator[](2);
-  }
+  public:
+    ParseNode();
+    virtual ~ParseNode();
 
-  void Tree::Node::addChild(Node const* n, int pos)
-  {
-    if (pos >= _children.size()) { _children.reserve(_children.size()); }
-    _children[pos] = const_cast<Node*>(n);
-  }
+    void addOperator(cola::my_string<string> const* oper);
+    void addOperand(cola::my_string<string> const* opnd, int pos);
 
-  void Tree::Node::addLeftChild(Node const* n)
-  {
-    _children[0] = const_cast<Node*>(n);
-  }
+    void setData(cola::my_string<string> *const d);
 
-  void Tree::Node::addRightChild(Node const* n)
-  {
-    _children[1] = const_cast<Node*>(n);
-  }
+    protected:
+	cola::my_string<string> *_data;
 
-  Tree::Node *Tree::Node::operator[](int index)
-  {
-    if (index >= _children.size())
-      return NIL;
-    else 
-      return _children[index];
-  }
+  };
 
-  Tree::Tree()
-  {
-    _root = new Tree::Node();
-  }
-  
-  Tree::~Tree()
-  {
-	//delete _root;
-  }
+public:
+  ParseTree();
+  virtual ~ParseTree();
+
+};
 
 }//namespace tree
 }//namespace schemeart

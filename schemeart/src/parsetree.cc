@@ -40,67 +40,42 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
-#include "tree.h"
+#include "parsetree.h"
 #include "main.h"
 
 namespace schemeart
 {
 namespace tree
 {
-  Tree::Node::Node()
+  ParseTree::ParseNode::ParseNode()
+	: Tree::Node()
   {
-    _children.reserve(3);
   }
   
-  Tree::Node::~Node()
+  ParseTree::ParseNode::~ParseNode()
   {
   }
 
-  Tree::Node *Tree::Node::first()
+  void ParseTree::ParseNode::addOperator(cola::my_string<string> const* oper)
   {
-    return operator[](0);
+	ParseTree::ParseNode *n = new ParseTree::ParseNode;
+	n->setData(const_cast<cola::my_string<string>*>(oper));
+	this->addChild(n, 0);
   }
 
-  Tree::Node *Tree::Node::second()
+  void ParseTree::ParseNode::addOperand(cola::my_string<string> const* opnd, int pos)
   {
-    return operator[](1);
+	ParseTree::ParseNode *n = new ParseTree::ParseNode;
+	n->setData(const_cast<cola::my_string<string>*>(opnd));
+	this->addChild(n, pos);
+  }
+
+  ParseTree::ParseTree()
+  {
+    _root = new ParseTree::ParseNode();
   }
   
-  Tree::Node *Tree::Node::third()
-  {
-    return operator[](2);
-  }
-
-  void Tree::Node::addChild(Node const* n, int pos)
-  {
-    if (pos >= _children.size()) { _children.reserve(_children.size()); }
-    _children[pos] = const_cast<Node*>(n);
-  }
-
-  void Tree::Node::addLeftChild(Node const* n)
-  {
-    _children[0] = const_cast<Node*>(n);
-  }
-
-  void Tree::Node::addRightChild(Node const* n)
-  {
-    _children[1] = const_cast<Node*>(n);
-  }
-
-  Tree::Node *Tree::Node::operator[](int index)
-  {
-    if (index >= _children.size())
-      return NIL;
-    else 
-      return _children[index];
-  }
-
-  Tree::Tree()
-  {
-    _root = new Tree::Node();
-  }
-  
-  Tree::~Tree()
+  ParseTree::~ParseTree()
   {
 	//delete _root;
   }

@@ -98,8 +98,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_schemeart_OBJECTS = src/main.$(OBJEXT) src/tree.$(OBJEXT) \
-	src/pondy.$(OBJEXT) src/pondynet.$(OBJEXT) src/queue.$(OBJEXT) \
-	src/stack.$(OBJEXT)
+	src/parsetree.$(OBJEXT) src/pondy.$(OBJEXT) \
+	src/pondynet.$(OBJEXT) src/queue.$(OBJEXT) src/stack.$(OBJEXT)
 schemeart_OBJECTS = $(am_schemeart_OBJECTS)
 schemeart_LDADD = $(LDADD)
 SCRIPTS = $(dist_noinst_SCRIPTS)
@@ -266,6 +266,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 schemeart_SOURCES = src/main.cc \
 			src/tree.cc \
+			src/parsetree.cc \
 			src/pondy.cc \
 			src/pondynet.cc \
 			src/queue.cc \
@@ -376,6 +377,8 @@ src/$(DEPDIR)/$(am__dirstamp):
 	@: > src/$(DEPDIR)/$(am__dirstamp)
 src/main.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 src/tree.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/parsetree.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/pondy.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 src/pondynet.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
@@ -394,6 +397,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/parsetree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/pondy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/pondynet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/queue.Po@am__quote@

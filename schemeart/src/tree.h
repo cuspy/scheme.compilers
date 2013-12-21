@@ -73,14 +73,14 @@ public:
   public:
 
     Node *operator[](int index);
-
+    
   };
 
 public:
   Tree();
   virtual ~Tree();
 
-private:
+protected:
   Tree::Node *_root;
 
 };
