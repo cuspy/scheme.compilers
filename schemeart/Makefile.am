@@ -3,7 +3,8 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
 bin_PROGRAMS = schemeart 
 schemeart_SOURCES = src/main.cc \
-			src/tree.cc
+			src/tree.cc \
+			src/pondy.cc
                 
 
 dist_noinst_SCRIPTS = autogen.sh
