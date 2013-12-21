@@ -42,6 +42,7 @@
 *******************************************************************************/
 #include<vector>
 
+//pondyparser
 #include<my_string.h>
 #include<parser.h>
 
@@ -54,11 +55,11 @@ using namespace std;
 class Pondy : public cola::Parser<string, cola::my_string<string> > 
 {
 public:
-  Pondy();
+  Pondy(string const& fn, string const& parsefn, int wid);
   virtual ~Pondy();
 
 private:
-
+	int parse();
 };
 
 }//namespace pondy 

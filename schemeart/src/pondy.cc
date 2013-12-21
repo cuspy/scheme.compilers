@@ -48,13 +48,23 @@ namespace schemeart
 {
 namespace pondy 
 {
-  Pondy::Pondy()
+using namespace std;
+
+  Pondy::Pondy(string const& fn, string const& parsefn, int wid) 
+	: Parser(fn, parsefn, wid)
   {
   }
   
   Pondy::~Pondy()
   {
   }
+
+  int Pondy::parse()
+  {
+	map<int,cola::my_string<string> > m;
+	cola::my_string<string> buf;
+	load(_filename, _parsefilename, m, buf);
+  } 
 
 }//namespace pondy 
 }//namespace schemeart
