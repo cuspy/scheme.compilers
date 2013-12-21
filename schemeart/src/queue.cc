@@ -61,7 +61,7 @@ namespace queue
   {
 	cola::my_string<string> *last = (*_queue)[_queue->size()-1];
 	delete (*_queue)[_queue->size()-1];
-	_queue->reserve(_queue->size()-1);
+	_queue->reserve(_queue->size()-1 < 0 ? 0 : _queue->size()-1 );
 	return last;
   }
 
