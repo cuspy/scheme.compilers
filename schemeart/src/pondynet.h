@@ -44,7 +44,7 @@
 
 //pondyparser
 #include<my_string.h>
-#include<parser.h>
+#include"pondy.h"
 #include<net.h>
 
 namespace schemeart
@@ -60,7 +60,7 @@ public:
   virtual ~PondyNet();
 
 private:
-	int parse(cola::Parser<string, cola::my_string<string> > parser);
+	int parse(Pondy parser);
 };
 
 }//namespace pondy 

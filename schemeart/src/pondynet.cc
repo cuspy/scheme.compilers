@@ -59,8 +59,8 @@ using namespace std;
   {
   }
 
-  //main override
-  int PondyNet::parse(cola::Parser<string, cola::my_string<string> > parser)
+  //main forked override
+  int PondyNet::parse(Pondy parser)
   {
 	//NOTE that there's reinterpretcast
 	return 0;
