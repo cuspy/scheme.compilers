@@ -98,7 +98,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_schemeart_OBJECTS = src/main.$(OBJEXT) src/tree.$(OBJEXT) \
-	src/pondy.$(OBJEXT)
+	src/pondy.$(OBJEXT) src/stack.$(OBJEXT)
 schemeart_OBJECTS = $(am_schemeart_OBJECTS)
 schemeart_LDADD = $(LDADD)
 SCRIPTS = $(dist_noinst_SCRIPTS)
@@ -265,7 +265,8 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 schemeart_SOURCES = src/main.cc \
 			src/tree.cc \
-			src/pondy.cc
+			src/pondy.cc \
+			src/stack.cc
 
 dist_noinst_SCRIPTS = autogen.sh
 all: config.h
@@ -373,6 +374,7 @@ src/$(DEPDIR)/$(am__dirstamp):
 src/main.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 src/tree.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 src/pondy.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/stack.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 
 schemeart$(EXEEXT): $(schemeart_OBJECTS) $(schemeart_DEPENDENCIES) $(EXTRA_schemeart_DEPENDENCIES) 
 	@rm -f schemeart$(EXEEXT)
@@ -387,6 +389,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/pondy.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/stack.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/tree.Po@am__quote@
 
 .cc.o:

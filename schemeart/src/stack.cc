@@ -40,34 +40,32 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
-
-#include "pondy.h"
+#include "stack.h"
 #include "main.h"
 
 namespace schemeart
 {
-namespace pondy 
+namespace stack 
 {
-using namespace std;
 
-  Pondy::Pondy(string const& fn, string const& parsefn, int wid) 
-	: Parser(fn, parsefn, wid)
+  Stack::Stack() : _stackptr(0)
   {
   }
   
-  Pondy::~Pondy()
+  Stack::~Stack()
   {
   }
-
-  //main override
-  int Pondy::parse()
+  
+  cola::my_string<string> *Stack::pop()
   {
-	map<int,cola::my_string<string> > m;
-	cola::my_string<string> buf;
-	load(_filename, _parsefilename, m, buf);
-  } 
+	if (!_stackptr) return NIL; else return _stack[_stackptr--]; 
+  }
 
-}//namespace pondy 
+  void Stack::push(cola::my_string<string> *s)
+  {
+	if (_stackptr >= _stack.size()) _stack.reserve(_stackptr+1); else _stack[_stackptr++] = s;
+  }
+
+
+}//namespace stack 
 }//namespace schemeart
-
-template class cola::Parser<std::string, cola::my_string<std::string> >;
