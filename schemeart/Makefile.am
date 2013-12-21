@@ -5,6 +5,7 @@ bin_PROGRAMS = schemeart
 schemeart_SOURCES = src/main.cc \
 			src/tree.cc \
 			src/pondy.cc \
+			src/pondynet.cc \
 			src/stack.cc
                 
 
