@@ -62,6 +62,8 @@ using namespace std;
   //main forked override
   int PondyNet::parse(Pondy parser)
   {
+
+	parser.parse();
 	//NOTE that there's reinterpretcast
 	return 0;
 

@@ -44,22 +44,25 @@
 
 //pondyparser
 #include<my_string.h>
-#include<parser.h>
 
 namespace schemeart
 {
-namespace pondy 
+namespace queue 
 {
 using namespace std;
 
-class Pondy : public cola::Parser<string, cola::my_string<string> > 
+class Queue 
 {
 public:
-  Pondy(string const& fn, string const& parsefn, int wid);
-  virtual ~Pondy();
+  Queue();
+  virtual ~Queue();
 
-  int parse();
+  cola::my_string<string> *pop();
+  void push(cola::my_string<string> *s);
+
+private:
+   vector<cola::my_string<string>* > *_queue; 
 };
 
-}//namespace pondy 
+}//namespace queue 
 }//namespace schemeart

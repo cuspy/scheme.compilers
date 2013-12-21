@@ -64,7 +64,11 @@ using namespace std;
   {
 	map<int,cola::my_string<string> > m;
 	cola::my_string<string> buf;
+	//this loads the keyword syntax into m and loads the _parsefilename
 	load(_filename, _parsefilename, m, buf);
+
+
+
   } 
 
 }//namespace pondy 

@@ -40,26 +40,36 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
-#include<vector>
-
-//pondyparser
-#include<my_string.h>
-#include<parser.h>
+#include "queue.h"
+#include "main.h"
 
 namespace schemeart
 {
-namespace pondy 
+namespace queue 
 {
-using namespace std;
 
-class Pondy : public cola::Parser<string, cola::my_string<string> > 
-{
-public:
-  Pondy(string const& fn, string const& parsefn, int wid);
-  virtual ~Pondy();
+  Queue::Queue() 
+   	: _queue(new vector<cola::my_string<string>* >) 
+  {
+  }
+  
+  Queue::~Queue()
+  {
+  }
+  
+  cola::my_string<string> *Queue::pop()
+  {
+	cola::my_string<string> *last = (*_queue)[_queue->size()-1];
+	delete (*_queue)[_queue->size()-1];
+	_queue->reserve(_queue->size()-1);
+	return last;
+  }
 
-  int parse();
-};
+  void Queue::push(cola::my_string<string> *s)
+  {
+ 	_queue->push_back(s); 
+  }
 
-}//namespace pondy 
+
+}//namespace queue
 }//namespace schemeart

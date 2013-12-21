@@ -61,7 +61,7 @@ public:
   void push(cola::my_string<string> *s);
 
 private:
-   vector<cola::my_string<string>* > _stack; 
+   vector<cola::my_string<string>* > *_stack; 
    int _stackptr; 
 };
 

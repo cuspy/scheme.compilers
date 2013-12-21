@@ -48,22 +48,26 @@ namespace schemeart
 namespace stack 
 {
 
-  Stack::Stack() : _stackptr(0)
+  Stack::Stack() : _stackptr(0),
+   			_stack(new vector<cola::my_string<string>* >)
   {
   }
   
   Stack::~Stack()
   {
+	//for_each(_stack.begin(), _stack.end(), delete);
+	delete _stack;
+
   }
   
   cola::my_string<string> *Stack::pop()
   {
-	if (!_stackptr) return NIL; else return _stack[_stackptr--]; 
+	if (!_stackptr) return NIL; else return (*_stack)[_stackptr--]; 
   }
 
   void Stack::push(cola::my_string<string> *s)
   {
-	if (_stackptr >= _stack.size()) _stack.reserve(_stackptr+1); else _stack[_stackptr++] = s;
+	if (_stackptr >= _stack->size()) _stack->reserve(_stackptr+1); else (*_stack)[_stackptr++] = s;
   }
 
 
